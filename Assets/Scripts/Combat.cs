@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using TMPro;
 
 public class Combat : MonoBehaviour
@@ -95,6 +96,7 @@ public class Combat : MonoBehaviour
     {
         playerbar.text = playerhp + "/" + maxplayerhp + " HP";
         enemybar.text = enemyhp + "/" + maxenemyhp + " HP";
+        if (enemyhp <= 0) SceneManager.LoadScene(sceneBuildIndex: 0);
         playerelement = playerdropdown.captionText.text;
         enemyelement = enemydropdown.captionText.text;
     }
