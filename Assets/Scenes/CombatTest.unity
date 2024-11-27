@@ -6136,7 +6136,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxplayerhp: 100
-  abilitypoints: 5
   maxenemyhp: 100
   basedmg: 20
   playerelement: Fire
@@ -6145,7 +6144,6 @@ MonoBehaviour:
   enemydropdown: {fileID: 1290639733}
   playerbar: {fileID: 300096810}
   enemybar: {fileID: 262104851}
-  aptext: {fileID: 1172235757}
 --- !u!4 &1653413499
 Transform:
   m_ObjectHideFlags: 0
@@ -6187,7 +6185,6 @@ MonoBehaviour:
   sprite1: {fileID: 119464402}
   sprite2: {fileID: 1085675613}
   sprite3: {fileID: 2116086396}
-  devtools: {fileID: 1479189184}
 --- !u!1 &1666349545
 GameObject:
   m_ObjectHideFlags: 0
