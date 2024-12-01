@@ -9,6 +9,7 @@ public class Combat : MonoBehaviour
     public int maxplayerhp = 100;
     public int maxenemyhp = 100;
     private int playerhp = 100;
+    private int playerap = 5;
     private int enemyhp = 100;
     public int basedmg = 20;
 
@@ -18,6 +19,7 @@ public class Combat : MonoBehaviour
     public TMP_Dropdown playerdropdown;
     public TMP_Dropdown enemydropdown;
     public TMP_Text playerbar;
+    public TMP_Text abilitypoints;
     public TMP_Text enemybar;
 
     private void AddElements()
@@ -50,19 +52,31 @@ public class Combat : MonoBehaviour
     public void Pfireattack()
     {
         Debug.Log("Fire attack");
-        enemyhp = deal_damage(enemyhp, 20, "Fire", enemyelement);
+        if (playerap > 0)
+        {
+            enemyhp = deal_damage(enemyhp, 20, "Fire", enemyelement);
+            playerap -= 1;
+        }
     }
     
     public void Pwaterattack()
     {
         Debug.Log("Water attack");
-        enemyhp = deal_damage(enemyhp, 20, "Water", enemyelement);
+        if (playerap > 0)
+        {
+            enemyhp = deal_damage(enemyhp, 20, "Water", enemyelement);
+            playerap -= 1;
+        }
     }
     
     public void Pearthattack()
     {
         Debug.Log("Earth attack");
-        enemyhp = deal_damage(enemyhp, 20, "Earth", enemyelement);
+        if (playerap > 0)
+        {
+            enemyhp = deal_damage(enemyhp, 20, "Earth", enemyelement);
+            playerap -= 1;
+        }
     }
     
     public void Enemyattack()
@@ -71,11 +85,10 @@ public class Combat : MonoBehaviour
         playerhp = deal_damage(playerhp, 20, "Normal", playerelement);
     }
     
-    public void Playerheal()
+    public void Playerattack()
     {
         Debug.Log("Player Heal");
-        if (playerhp + 20 > maxplayerhp) playerhp = maxplayerhp;
-        else playerhp += 20;
+        enemyhp = deal_damage(enemyhp, 20, "Normal", enemyelement);
     }
     
     public void Enemyheal()
@@ -95,8 +108,9 @@ public class Combat : MonoBehaviour
     void Update()
     {
         playerbar.text = playerhp + "/" + maxplayerhp + " HP";
+        abilitypoints.text = playerap + "/" + 5 + " AP";
         enemybar.text = enemyhp + "/" + maxenemyhp + " HP";
-        if (enemyhp <= 0) SceneManager.LoadScene(sceneBuildIndex: 0);
+        if (enemyhp <= 0) SceneManager.UnloadSceneAsync(sceneName: "Combat");
         playerelement = playerdropdown.captionText.text;
         enemyelement = enemydropdown.captionText.text;
     }
